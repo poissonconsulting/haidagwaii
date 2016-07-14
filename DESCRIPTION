@@ -1,7 +1,10 @@
 Package: haidagwaii
 Title: Map of Haida Gwaii
 Version: 0.0.0.9000
-Authors@R: person("Joseph", "Thorley", email = "joe@poissonconsulting.ca", role = c("aut", "cre"))
+Authors@R: c(
+    person("Joe", "Thorley", email = "joe@poissonconsulting.ca", role = c("aut", "cre")),
+    person("Andy", "Teucher", email = "andy.teucher@gov.bc.ca", role = "aut"),
+    person("Stephanie", "Hazlitt", email = "stephanie.hazlitt@gov.bc.ca", role = "aut"))
 Description: Spatial polygon data for Haida Gwaii, British Columbia.
 Depends:
     R (>= 3.3.0),
