@@ -6,22 +6,27 @@ haidagwaii
 Introduction
 ------------
 
-`haidagwaii` is an R package of a map of Haida Gwaii, British Columbia, Canada.
+`haidagwaii` is an R data package that provides a spatial polygon object of the archipelago of Haida Gwaii, British Columbia called `haida_gwaii`.
 
-It provides a single spatial polygon object of the archipelago called `haida_gwaii`. The projection is in Latitude and Longitude for the WGS84 geodetic datum.
+The projection is in Latitude and Longitude for the WGS84 geodetic datum.
 
 Usage
 -----
 
 ``` r
+# load required packages
 library(haidagwaii)
 #> Loading required package: sp
+library(broom)
 library(ggplot2)
 
 # project as BC Albers
 haida_gwaii <- spTransform(haidagwaii::haida_gwaii, CRS("+init=epsg:3005"))
-haida_gwaii <- fortify(haida_gwaii)
 
+# convert into data frame
+haida_gwaii <- broom::tidy(haida_gwaii)
+
+# map
 ggplot() +
 geom_polygon(data = haida_gwaii, aes(x = long / 1000, y = lat / 1000, group = group),
                fill = alpha("black", 1/2)) +
