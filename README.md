@@ -20,15 +20,12 @@ library(haidagwaii)
 library(broom)
 library(ggplot2)
 
-# project as BC Albers
-haida_gwaii <- spTransform(haidagwaii::haida_gwaii, CRS("+init=epsg:3005"))
-
-# convert into data frame
-haida_gwaii <- broom::tidy(haida_gwaii)
+# convert to data set with Easting and Northing in BC Albers
+haida_gwaii <- latlong2eastnorth(haidagwaii::haida_gwaii, long = "long", lat = "lat")
 
 # map
 ggplot() +
-geom_polygon(data = haida_gwaii, aes(x = long / 1000, y = lat / 1000, group = group),
+geom_polygon(data = haida_gwaii, aes(x = Easting / 1000, y = Northing / 1000, group = group),
                fill = alpha("black", 1/2)) +
   coord_equal() +
   scale_x_continuous("Easting (km)") +
