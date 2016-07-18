@@ -30,13 +30,21 @@ latlong2eastnorth <- function (
   if (tibble::has_name(data, east)) warning("column '", east, "' has been replaced", call. = FALSE)
   if (tibble::has_name(data, north)) warning("column '", north, "' has been replaced", call. = FALSE)
 
-  geodatum <- paste0("+proj=longlat +ellps=", geodatum)
-  points <- sp::SpatialPoints(data[c(long, lat)], sp::CRS(geodatum))
-  points %<>% sp::spTransform(sp::CRS(projargs))
-  points <- suppressWarnings(broom::tidy(points)) # SpatialPoints method undefined
+  data$Easting <- NA_real_
+  data$Northing <- NA_real_
 
-  data$Easting <- points[[long]]
-  data$Northing <- points[[lat]]
+  geodatum <- paste0("+proj=longlat +ellps=", geodatum)
+  points <- data[c(long, lat)]
+  missing <- is.na(points[[long]]) | is.na(points[[lat]])
+
+  if (any(!missing)) {
+    points <- points[!missing,,drop = FALSE]
+    points %<>% sp::SpatialPoints(sp::CRS(geodatum))
+    points %<>% sp::spTransform(sp::CRS(projargs))
+    points <- suppressWarnings(broom::tidy(points)) # SpatialPoints method undefined
+    data$Easting[!missing] <- points[[long]]
+    data$Northing[!missing] <- points[[lat]]
+  }
 
   data
 }

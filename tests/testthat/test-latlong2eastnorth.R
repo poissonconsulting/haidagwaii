@@ -28,6 +28,14 @@ test_that("latlong2eastnorth works", {
     Easting = 1,
     Northing = 1)))
 
+  is.na(data$Longitude) <- TRUE
+
+  expect_df(datacheckr::check_data3(latlong2eastnorth(data), values = list(
+    Longitude = c(1,NA),
+    Latitude = 1,
+    Easting = c(1,NA),
+    Northing = c(1,NA))))
+
   expect_df(datacheckr::check_data2(latlong2eastnorth(haidagwaii::haida_gwaii, long = "long", lat = "lat"), values = list(
     long = 1,
     lat = 1,

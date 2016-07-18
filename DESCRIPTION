@@ -15,6 +15,7 @@ Imports:
     datacheckr,
     dplyr,
     magrittr,
+    rgdal,
     tibble
 Suggests:
     ggplot2,
