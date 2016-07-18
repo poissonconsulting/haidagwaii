@@ -1,6 +1,7 @@
 Package: haidagwaii
 Title: Map of Haida Gwaii
-Version: 0.0.0.9000
+Version: 0.0.1
+Date: 2016-07-18
 Authors@R: c(
     person("Joe", "Thorley", email = "joe@poissonconsulting.ca", role = c("aut", "cre")),
     person("Andy", "Teucher", email = "andy.teucher@gov.bc.ca", role = "aut"),
@@ -8,10 +9,16 @@ Authors@R: c(
 Description: Spatial polygon data for Haida Gwaii, British Columbia.
 Depends:
     R (>= 3.3.0),
-    sp(>= 1.1.0)
-Suggests:
+    sp (>= 1.1.0)
+Imports:
     broom,
-    ggplot2
+    datacheckr,
+    dplyr,
+    magrittr,
+    tibble
+Suggests:
+    ggplot2,
+    testthat
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
