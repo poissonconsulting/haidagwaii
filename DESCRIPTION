@@ -15,7 +15,9 @@ Imports:
     datacheckr,
     dplyr,
     magrittr,
+    plotKML,
     rgdal,
+    stats,
     tibble
 Suggests:
     ggplot2,

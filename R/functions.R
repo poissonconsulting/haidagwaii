@@ -23,6 +23,8 @@ latlong2eastnorth <- function (
   check_string(projargs)
 
   if (inherits(data, "Spatial")) {
+    if (sp::proj4string(data) != paste0("+proj=longlat +ellps=", geodatum))
+      stop("data must have projection '+proj=longlat +ellps=WGS84'", call. = FALSE)
     data <- suppressWarnings(broom::tidy(data))
   }
   check_data2(data, values = stats::setNames(list(c(1,NA), c(1,NA)), c(long, lat)))
@@ -47,4 +49,33 @@ latlong2eastnorth <- function (
   }
 
   data
+}
+
+#' Latitude and Longitude to kml File.
+#'
+#' @inheritParams latlong2eastnorth
+#' @param label A string specifying the column with the labels.
+#' @param file A string specifying the file name.
+#' @export
+latlong2kml <- function(data, file = "plot.kml", label = "Site", long = "Longitude", lat = "Latitude", geodatum = "WGS84") {
+  check_string(file)
+  check_string(label)
+  check_string(long)
+  check_string(lat)
+  check_string(geodatum)
+
+  if (!inherits(data, "Spatial")) {
+    check_data1(data, values = stats::setNames(list(c(1,NA), c(1,NA), c("", NA), factor(c("", NA))), c(long, lat, label, label)), min_row = 1)
+
+    data <- data[c(long, lat, label)]
+    data %<>% stats::na.omit()
+    if (!nrow(data)) stop("data has no rows with non-missing values")
+    points <- data[c(long, lat)]
+
+    data <- sp::SpatialPointsDataFrame(data[c(long, lat)], data = data[label],
+                                       proj4string = sp::CRS(paste0("+proj=longlat +ellps=", geodatum)))
+  }
+  data %<>% sp::spTransform(sp::CRS("+proj=longlat +datum=WGS84"))
+  print(data@data)
+  plotKML::plotKML(data, points_name = data[[label]])
 }
