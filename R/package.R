@@ -1,3 +1,2 @@
-#' @import sp datacheckr
-#' @importFrom magrittr %<>% %>%
+#' @import sp
 NULL
