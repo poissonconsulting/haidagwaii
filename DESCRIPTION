@@ -1,7 +1,7 @@
 Package: haidagwaii
 Title: Map of Haida Gwaii
-Version: 0.1.0
-Date: 2016-07-20
+Version: 0.2.0
+Date: 2016-07-21
 Authors@R: c(
     person("Joe", "Thorley", email = "joe@poissonconsulting.ca", role = c("aut", "cre")),
     person("Andy", "Teucher", email = "andy.teucher@gov.bc.ca", role = "aut"),
@@ -15,9 +15,6 @@ Imports:
     datacheckr,
     dplyr,
     magrittr,
-    plotKML,
-    rgdal,
-    stats,
     tibble
 Suggests:
     ggplot2,
