@@ -10,8 +10,8 @@ Introduction
 
 `haidagwaii` is an R data package that provides a spatial polygon object of the archipelago of Haida Gwaii, British Columbia called `haida_gwaii`.
 
-Usage
------
+Utilisation
+-----------
 
 ``` r
 # load required packages
@@ -40,15 +40,19 @@ geom_polygon(data = haida_gwaii, aes(x = long / 1000, y = lat / 1000, group = gr
 Installation
 ------------
 
-To install and load from GitHub
+To install
 
-    install.packages("devtools") # if not already installed
+    # install.packages("devtools")
+    devtools::install_github("poissonconsulting/haidagwaii")
 
-    library(devtools)
-    install_github("poissonconsulting/haidagwaii")
-    library(haidagwaii)
+Inspiration
+-----------
 
-License
--------
+The spatial polygon was derived from the [bcmaps](https://github.com/bcgov/bcmaps) R package.
 
-The original data are available from <http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/files-fichiers/gcd_000b11a_e.zip>. The spatial polygon was derived from the [bcmaps](https://github.com/bcgov/bcmaps) R package. Although licensed under the [Statistics Canada Open Licence Agreement](http://www.statcan.gc.ca/eng/reference/licence) this does not constitute an endorsement by Statistics Canada.
+The original data are available from <http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/files-fichiers/gcd_000b11a_e.zip>.
+
+Absolution
+----------
+
+Although licensed under the [Statistics Canada Open Licence Agreement](http://www.statcan.gc.ca/eng/reference/licence) this does not constitute an endorsement by Statistics Canada.
