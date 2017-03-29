@@ -17,4 +17,3 @@ The original data are available from \url{http://www12.statcan.gc.ca/census-rece
 This does not constitute an endorsement by Statistics Canada of this product.
 }
 \keyword{datasets}
-
